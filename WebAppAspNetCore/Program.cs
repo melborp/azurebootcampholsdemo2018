@@ -19,7 +19,16 @@ namespace WebAppAspNetCore
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration(ConfigureSecrets)
                 .UseStartup<Startup>()
                 .Build();
+
+        static void ConfigureSecrets(WebHostBuilderContext webHostBuilderContext, IConfigurationBuilder configurationBuilder)
+        {
+            if (webHostBuilderContext.HostingEnvironment.IsDevelopment())
+            {
+                configurationBuilder.AddUserSecrets<Startup>();
+            }
+        }
     }
 }
