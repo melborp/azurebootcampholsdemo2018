@@ -57,6 +57,7 @@ namespace WebAppAspNetCore.Controllers
         {
             if (ModelState.IsValid)
             {
+                Services.SomeService.TrackCustomStuff(runnerPerformance.FivekmTime);
                 _context.Add(runnerPerformance);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

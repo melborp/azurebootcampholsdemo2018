@@ -23,6 +23,7 @@ namespace WebAppAspNetCore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddApplicationInsightsTelemetry(Configuration["ApplicationInsights:InstrumentationKey"]);
             services.AddMvc();
             services.AddDbContext<BootCampContext>(options =>
            options.UseSqlServer(Configuration.GetConnectionString("AzureDBConnectionStrings")));

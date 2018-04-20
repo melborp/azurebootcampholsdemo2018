@@ -20,6 +20,7 @@ namespace WebAppAspNetCore
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .ConfigureAppConfiguration(ConfigureSecrets)
+                .UseApplicationInsights()                
                 .UseStartup<Startup>()
                 .Build();
 
